@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
+
   <head>
+    <title>""</title>
     <script src="../../../../libs/react.development.js"></script>
     <script src="../../../../libs/react-dom.development.js"></script>
     <script src="../../../../libs/babel-standalone.js"></script>
   </head>
+
   <body>
     <div id="app"></div>
     <script type="text/babel">
       const appEl = document.querySelector("#app");
       const root = ReactDOM.createRoot(appEl);
-      root.render(<h1>こんにちは</h1>);
+      // function Example() {
+      //   return <h1>Hello Components</h1>
+      // }
+      const Example = () => <h1>Hello Components</h1>
+      // コンポーネントは大文字で始めないとBabelがReactコンポーネントとして認識しない
+      // Babelとは、JSXをブラウザが理解できるJavaScriptに変換するツール
+      root.render(<Example />);
     </script>
   </body>
+
 </html>
