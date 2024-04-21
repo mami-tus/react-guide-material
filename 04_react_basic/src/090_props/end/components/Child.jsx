@@ -2,13 +2,11 @@
 親コンポーネントで属性値のように記述した各値は、１つのオブジェクトとして子コンポーネントで受け取ることができる。
  */
 
-
-import "./Child.css";
+import './Child.css';
 
 /* POINT Propsを分割代入で受け取る！ */
 /* POINT Propsのデフォルト値を設定する！ */
 const Child = ({ color: c = 'green', num, fn, bool, obj }) => {
-
   // console.log(bool);
 
   return (
