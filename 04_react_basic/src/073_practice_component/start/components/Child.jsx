@@ -1,7 +1,7 @@
 const Child = () => {
   return (
     <div className='component'>
-      <h3>Hello Component</h3>
+      <h3>Child Component</h3>
     </div>
   );
 };
