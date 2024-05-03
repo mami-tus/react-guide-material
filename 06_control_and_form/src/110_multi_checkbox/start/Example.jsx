@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 // POINT 複数チェックボックスの実装
 const Example = () => {
   const [fruits, setFruits] = useState([
-    { label: "Apple", value: 100, checked: false },
-    { label: "Banana", value: 200, checked: false },
-    { label: "Cherry", value: 300, checked: false },
+    { label: 'Apple', value: 100, checked: false },
+    { label: 'Banana', value: 200, checked: false },
+    { label: 'Cherry', value: 300, checked: false },
   ]);
 
   const [sum, setSum] = useState(0);
@@ -23,8 +23,8 @@ const Example = () => {
     setFruits(newFruits);
     // forEachバージョン
     // let sumVal = 0;
-    // newFruits.forEach(fruit => {
-    //   if(fruit.checked) {
+    // newFruits.forEach((fruit) => {
+    //   if (fruit.checked) {
     //     sumVal = sumVal + fruit.value;
     //   }
     // });
@@ -48,7 +48,7 @@ const Example = () => {
           <div key={fruit.label}>
             <input
               id={fruit.label}
-              type="checkbox"
+              type='checkbox'
               value={fruit.label}
               checked={fruit.checked}
               onChange={handleChange}
