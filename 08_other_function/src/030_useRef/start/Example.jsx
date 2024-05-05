@@ -45,11 +45,42 @@ const Case2 = () => {
     </div>
   );
 };
+
+const Case3 = () => {
+  const createTimeStamp = () => new Date().getTime();
+  const [timeStamp, setTimeStamp] = useState(createTimeStamp());
+  const ref = useRef(createTimeStamp());
+
+  const updateState = () => {
+    setTimeStamp(createTimeStamp());
+  };
+
+  const updateRef = () => {
+    ref.current = createTimeStamp();
+    console.log('ref.current -> ', ref.current);
+  };
+
+  return (
+    <div>
+      <h3>ユースケース3</h3>
+      <p>
+        state: {timeStamp}
+        <button onClick={updateState}>更新</button>
+      </p>
+      <p>
+        ref: {ref.current}
+        <button onClick={updateRef}>更新</button>
+      </p>
+    </div>
+  );
+};
+
 const Example = () => {
   return (
     <>
       <Case1 />
       <Case2 />
+      <Case3 />
     </>
   );
 };
