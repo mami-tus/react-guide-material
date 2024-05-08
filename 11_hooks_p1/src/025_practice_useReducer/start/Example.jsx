@@ -4,30 +4,24 @@ const CALC_OPTIONS = ['add', 'minus', 'divide', 'multiply'];
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'calculate':
-      const { a, b } = state;
-      let result;
-      switch (action.operation) {
-        case 'add':
-          result = a + b;
-          break;
-        case 'minus':
-          result = a - b;
-          break;
-        case 'divide':
-          result = a / b;
-          break;
-        case 'multiply':
-          result = a * b;
-          break;
-        default:
-          result = state.result;
-      }
-      return { ...state, result };
-    case 'set_number':
-      return { ...state, [action.name]: action.value };
+    case 'change': {
+      const { name, value } = action;
+      return { ...state, [name]: value };
+    }
+    case 'add': {
+      return { ...state, result: state.a + state.b };
+    }
+    case 'minus': {
+      return { ...state, result: state.a - state.b };
+    }
+    case 'divide': {
+      return { ...state, result: state.a / state.b };
+    }
+    case 'multiply': {
+      return { ...state, result: state.a * state.b };
+    }
     default:
-      return state;
+      throw new Error('operator is invalid');
   }
 };
 
@@ -41,18 +35,16 @@ const Example = () => {
   const [state, dispatch] = useReducer(reducer, initState);
 
   const calculate = (e) => {
-    dispatch({ type: 'calculate', operation: e.target.value });
+    dispatch({ type: e.target.value });
   };
 
   const numChangeHandler = (e) => {
     const { name, value } = e.target;
-    dispatch({ type: 'set_number', name, value: Number(value) });
+    dispatch({ type: 'change', name, value: parseInt(value) });
   };
 
   return (
     <>
-      <h3>練習問題</h3>
-      <p>useReducerを使って完成コードと同じ機能を作成してください。</p>
       <div>
         a:
         <input
@@ -72,9 +64,9 @@ const Example = () => {
         />
       </div>
       <select value={state.type} onChange={calculate}>
-        {CALC_OPTIONS.map((option) => (
-          <option key={option} value={option}>
-            {option}
+        {CALC_OPTIONS.map((type) => (
+          <option key={type} value={type}>
+            {type}
           </option>
         ))}
       </select>
