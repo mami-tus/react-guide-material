@@ -1,7 +1,7 @@
-import { useTheme } from '../context/ThemeContext';
+import { useUpdateTheme } from '../context/ThemeContext';
 
 const Footer = () => {
-  const [, setTheme] = useTheme();
+  // const setTheme = useUpdateTheme();
   console.log('footer');
   return (
     <footer>
