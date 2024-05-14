@@ -1,8 +1,8 @@
-import { useCalc, useCalcDispatch } from '../context/CalcContext';
+import { useCalc } from '../context/CalcContext';
 
-const Select = () => {
+const Result = () => {
   const state = useCalc();
 
   return <h3>結果：{state.result}</h3>;
 };
-export default Select;
+export default Result;

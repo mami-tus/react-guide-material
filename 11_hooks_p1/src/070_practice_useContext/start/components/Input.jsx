@@ -17,7 +17,7 @@ const Input = ({ name }) => {
       <input
         type='number'
         name={name}
-        value={name}
+        value={state[name]}
         onChange={numChangeHandler}
       />
     </div>
