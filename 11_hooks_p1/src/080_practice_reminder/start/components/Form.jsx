@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useTodo, useTodoDispatch } from '../context/TodoContext';
+
 const Form = ({ createTodo }) => {
-  const [enteredTodo, setEnteredTodo] = useState("");
+  const todo = useTodo();
+  const dispatch = useTodoDispatch();
 
   const addTodo = (e) => {
     e.preventDefault();
@@ -11,15 +13,14 @@ const Form = ({ createTodo }) => {
       editing: false,
     };
 
-    createTodo(newTodo);
-
-    setEnteredTodo("");
+    dispatch({ type: 'create', payload: { todo: newTodo } });
   };
+
   return (
     <div>
       <form onSubmit={addTodo}>
         <input
-          type="text"
+          type='text'
           value={enteredTodo}
           onChange={(e) => setEnteredTodo(e.target.value)}
         />
