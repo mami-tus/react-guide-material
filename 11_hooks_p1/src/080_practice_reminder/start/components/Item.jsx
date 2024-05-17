@@ -1,12 +1,20 @@
 import { useState } from 'react';
+import { useTodo, useTodoDispatch } from '../context/TodoContext';
 
-const Item = ({ todo, complete }) => {
+const Item = () => {
   const [editingContent, setEditingContent] = useState(todo.content);
+  const todo = useTodo();
+  const dispatch = useTodoDispatch();
 
   const changeContent = (e) => setEditingContent(e.target.value);
 
+  const complete = (id) => {
+    dispatch({ type: 'delete', payload: { id } });
+  };
+
   const toggleEditMode = () => {
     const newTodo = { ...todo, editing: !todo.editing };
+    dispatch({ type: 'update', payload: { todo: newTodo } });
   };
   return (
     <div>
