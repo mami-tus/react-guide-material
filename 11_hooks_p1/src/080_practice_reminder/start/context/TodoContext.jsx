@@ -13,6 +13,12 @@ const reducer = (state, { type, payload }) => {
       const { todo } = payload;
       return [...state, todo];
     }
+    case 'update': {
+      const { todo } = payload;
+      return state.map((_todo) =>
+        _todo.id === todo.id ? { ..._todo, ...todo } : { ..._todo }
+      );
+    }
     default:
       throw new Error('action is invalid');
   }
@@ -23,14 +29,17 @@ const TodoProvider = ({ children }) => {
     {
       id: 1,
       content: '店予約する',
+      editing: false,
     },
     {
       id: 2,
       content: '卵買う',
+      editing: false,
     },
     {
       id: 3,
       content: '郵便出す',
+      editing: false,
     },
   ];
 

@@ -1,8 +1,21 @@
+import { useState } from 'react';
+
 const Item = ({ todo, complete }) => {
+  const [editingContent, setEditingContent] = useState(todo.content);
+
+  const changeContent = (e) => setEditingContent(e.target.value);
+
+  const toggleEditMode = () => {
+    const newTodo = { ...todo, editing: !todo.editing };
+  };
   return (
     <div>
       <button onClick={() => complete(todo.id)}>完了</button>
-      <span>{todo.content}</span>
+      {todo.editing ? (
+        <input type='text' value={editingContent} onChange={changeContent} />
+      ) : (
+        <span onDoubleClick={toggleEditMode}>{todo.content}</span>
+      )}
     </div>
   );
 };
