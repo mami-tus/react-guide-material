@@ -1,33 +1,31 @@
 import { useState } from 'react';
-import { useTodo, useTodoDispatch } from '../context/TodoContext';
+import { useDispatchTodos } from '../context/TodoContext';
 
-const Item = () => {
+const Item = ({ todo }) => {
   const [editingContent, setEditingContent] = useState(todo.content);
-  const todo = useTodo();
-  const dispatch = useTodoDispatch();
+  const dispatch = useDispatchTodos();
 
   const changeContent = (e) => setEditingContent(e.target.value);
 
-  const complete = (id) => {
-    dispatch({ type: 'delete', payload: { id } });
-  };
-
   const toggleEditMode = () => {
     const newTodo = { ...todo, editing: !todo.editing };
-    dispatch({ type: 'update', payload: { todo: newTodo } });
+    dispatch({ type: 'todo/update', todo: newTodo });
   };
 
   const confirmContent = (e) => {
     // ブラウザのデフォルトの挙動をキャンセル
     // これにより、ページがリロードされるのを防ぐ
     e.preventDefault();
-    setEditingContent(todo.content);
     const newTodo = {
       ...todo,
       editing: !todo.editing,
       content: editingContent,
     };
-    dispatch({ type: 'update', payload: { todo: newTodo } });
+    dispatch({ type: 'todo/update', todo: newTodo });
+  };
+
+  const complete = (todo) => {
+    dispatch({ type: 'todo/delete', todo });
   };
 
   return (

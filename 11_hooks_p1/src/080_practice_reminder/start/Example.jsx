@@ -1,13 +1,11 @@
-import Form from './components/Form';
-import List from './components/List';
-import { TodoProvider } from './context/TodoContext';
+import Todo from './components/Todo';
 
 const Example = () => {
   return (
-    <TodoProvider>
-      <List />
-      <Form />
-    </TodoProvider>
+    <>
+      <h2>Reminder</h2>
+      <Todo />
+    </>
   );
 };
 
